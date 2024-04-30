@@ -1,9 +1,14 @@
 <!-- Header -->
 <app-header></app-header>
 <!-- Wrapper -->
-<div class="wrapper">
+<!-- <div class="wrapper">
     <router-outlet></router-outlet>
-</div>
+</div> -->
+
+<button (click)="this.componentToShow = 'login'">Login</button>
+<app-login-form *ngIf="componentToShow == 'login'"/>
+<app-public-content *ngIf="componentToShow == 'public'"/>
+<app-private-content *ngIf="componentToShow == 'private'"/>
 
 <!-- Footer -->
 <app-footer></app-footer>
