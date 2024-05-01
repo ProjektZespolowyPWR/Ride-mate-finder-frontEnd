@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Token } from './token';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,9 @@ export class MyHttpClientService {
   token: string = "";
 
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {
+    this.token = localStorage.getItem('token') || "";
+  }
 
   get(url: string): any {
     return this.http.get("http://localhost:7777"+url);
@@ -36,11 +39,25 @@ export class MyHttpClientService {
       .pipe(map((response: HttpResponse<Token>) => {
         if (response.status == 200 && response.body !== null) {
           this.token = response.body.token;
+          localStorage.setItem('token', this.token);
           return true;
         } else {
+          localStorage.removeItem('token');
           return false;
         }
       }));
+  }
+
+  postDriver(driverData: {name: string, description: string}): Observable<any> {
+    return this.http.post("http://localhost:7777/driver/add", driverData,
+      {headers: new HttpHeaders({"Authorization": "Bearer "+ this.token})}
+    );
+  }
+
+  logout(): void {
+    localStorage.removeItem('token');
+    this.token = "";
+    this.router.navigate(['/']);
   }
 
 

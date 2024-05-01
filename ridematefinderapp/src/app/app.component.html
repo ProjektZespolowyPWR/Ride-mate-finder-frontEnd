@@ -4,11 +4,15 @@
 <!-- <div class="wrapper">
     <router-outlet></router-outlet>
 </div> -->
+<div class="col-md-12 text-center">
+    <button (click)="this.componentToShow = 'login'" class="btn btn-primary">Login</button>
+    <button (click)="logout()" class="btn btn-warning">Wyloguj</button>
+</div>
 
-<button (click)="this.componentToShow = 'login'">Login</button>
 <app-login-form *ngIf="componentToShow == 'login'"/>
 <app-public-content *ngIf="componentToShow == 'public'"/>
 <app-private-content *ngIf="componentToShow == 'private'"/>
+<app-driver-form *ngIf="componentToShow == 'private'"/>
 
 <!-- Footer -->
 <app-footer></app-footer>
