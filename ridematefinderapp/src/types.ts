@@ -27,6 +27,17 @@ export interface Driver {
     description: string;
 }
 
+export interface User {
+    id: string;
+    driver_id: string;
+    pic_id: string;
+    name: string;
+    surname: string;
+    email: string;
+    gender: string;
+    age: number;
+}
+
 export interface PaginationParams {
     [param: string]: string | number | boolean | ReadonlyArray<string | number | boolean>;
     page: number;

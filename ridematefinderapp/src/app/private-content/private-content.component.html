@@ -1,6 +1,16 @@
 <div>
     <h2>Private content</h2>
     <p>{{content}}</p>
+    <div *ngIf="user">
+        <h1>User data:</h1>
+        <ul>
+            <li>ID: {{ user.id }}</li>
+            <li>Name: {{ user.name }}</li>
+            <li>Email: {{ user.email }}</li>
+            <li>Age: {{ user.age }}</li>
+            <li>Gender: {{ user.gender || 'Not specified' }}</li>
+          </ul>
+    </div>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <div class="container">
         <div class="row">
