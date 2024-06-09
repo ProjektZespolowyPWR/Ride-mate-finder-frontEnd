@@ -1,17 +1,17 @@
 <!-- Header -->
-<app-header></app-header>
+<app-header (changeComponent)="componentToShow = $event" (logoutEvent)="logout()" (profileEvent)="showProfile()"></app-header>
 <!-- Wrapper -->
 <!-- <div class="wrapper">
     <router-outlet></router-outlet>
 </div> -->
-<div class="col-md-12 text-center">
+<!-- <div class="col-md-12 text-center">
     <button (click)="this.componentToShow = 'login'" class="btn btn-primary">Login</button>
     <button (click)="logout()" class="btn btn-warning">Wyloguj</button>
-</div>
+</div> -->
 
 <app-login-form *ngIf="componentToShow == 'login'"/>
 <app-public-content *ngIf="componentToShow == 'public'"/>
-<app-private-content *ngIf="componentToShow == 'private'"/>
+<app-private-content *ngIf="componentToShow == 'profile'"/>
 <!-- <app-driver-form *ngIf="componentToShow == 'private'"/> -->
 
 <!-- Footer -->

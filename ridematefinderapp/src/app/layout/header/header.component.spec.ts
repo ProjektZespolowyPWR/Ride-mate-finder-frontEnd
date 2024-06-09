@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderComponent } from './header.component';
+import { EventEmitter, Output } from '@angular/core';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;

@@ -23,6 +23,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 export class AppComponent {
   title = 'ridematefinderapp';
   componentToShow: string = "public";
+  showProfileVar: string = "false";
+  isLogged: boolean = false;
 
   constructor(private http: MyHttpClientService, private route: ActivatedRoute, private router: Router) {}
 
@@ -33,6 +35,7 @@ export class AppComponent {
         if(params["code"] !== undefined) {
           this.http.getToken(params["code"]).subscribe(result => {
             if(result == true) {
+              this.isLogged = true;
               this.componentToShow = "private";
               this.router.navigate(['/']);
             } else {
@@ -47,6 +50,12 @@ export class AppComponent {
     logout(): void {
       this.http.logout();
       console.log("test logout");
+      this.isLogged = false;
+      this.ngOnInit();
+    }
+
+    showProfile(): void {
+      this.showProfileVar = "profile";
       this.ngOnInit();
     }
   }
